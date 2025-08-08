@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackbuster - Stream Black Cinema</title>
+    <meta name="description" content="Discover and stream the best of Black cinema. From award-winning dramas to groundbreaking documentaries, explore the rich diversity of Black storytelling on Blackbuster.">
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black text-white font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <h1 class="logo">BLACKBUSTER</h1>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Movies</a>
+                    <a href="#" class="nav-link">TV Shows</a>
+                    <a href="#" class="nav-link">Documentaries</a>
+                    <a href="#" class="nav-link">My List</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="search-container">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" placeholder="Search movies & TV shows..." class="search-input" id="searchInput">
+                </div>
+                <button class="notification-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="4" x2="20" y1="6" y2="6"></line>
+                        <line x1="4" x2="20" y1="12" y2="12"></line>
+                        <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="https://image.tmdb.org/t/p/original/b6ZJZHUdMEFECvGiDpJjlfUWela.jpg" alt="Black Panther: Wakanda Forever" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">Featured</div>
+            <h2 class="hero-title">Black Panther: Wakanda Forever</h2>
+            <div class="hero-meta">
+                <span class="rating-badge">PG-13</span>
+                <span>2022</span>
+                <span>2h 41m</span>
+                <div class="rating">
+                    <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                    </svg>
+                    <span>7.3</span>
+                </div>
+            </div>
+            <p class="hero-description">Queen Ramonda, Shuri, M'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T'Challa's death.</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="openMovieModal(1)">
+                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                    Play
+                </button>
+                <button class="btn btn-secondary" onclick="openMovieModal(1)">
+                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" x2="12" y1="16" y2="12"></line>
+                        <line x1="12" x2="12.01" y1="8" y2="8"></line>
+                    </svg>
+                    More Info
+                </button>
+                <button class="btn btn-secondary">
+                    <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="12" x2="12" y1="5" y2="19"></line>
+                        <line x1="5" x2="19" y1="12" y2="12"></line>
+                    </svg>
+                    My List
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movie Sections -->
+    <main class="content">
+        <!-- Continue Watching -->
+        <section class="movie-section" id="continueWatching" style="display: none;">
+            <h3 class="section-title">Continue Watching</h3>
+            <div class="movie-row" id="continueWatchingRow"></div>
+        </section>
+
+        <!-- New Releases -->
+        <section class="movie-section" id="newReleases" style="display: none;">
+            <h3 class="section-title">New Releases</h3>
+            <div class="movie-row" id="newReleasesRow"></div>
+        </section>
+
+        <!-- Trending Now -->
+        <section class="movie-section">
+            <h3 class="section-title">Trending Now</h3>
+            <div class="movie-row" id="trendingRow"></div>
+        </section>
+
+        <!-- Black TV Shows -->
+        <section class="movie-section">
+            <h3 class="section-title">Black TV Shows</h3>
+            <div class="movie-row" id="tvShowsRow"></div>
+        </section>
+
+        <!-- 90's Black Cinema -->
+        <section class="movie-section">
+            <h3 class="section-title">90's Black Cinema</h3>
+            <div class="movie-row" id="ninetiesRow"></div>
+        </section>
+
+        <!-- Award Winners -->
+        <section class="movie-section">
+            <h3 class="section-title">Award Winners</h3>
+            <div class="movie-row" id="awardsRow"></div>
+        </section>
+
+        <!-- Documentaries -->
+        <section class="movie-section">
+            <h3 class="section-title">Documentaries</h3>
+            <div class="movie-row" id="documentariesRow"></div>
+        </section>
+
+        <!-- Classic Black Cinema -->
+        <section class="movie-section">
+            <h3 class="section-title">Classic Black Cinema</h3>
+            <div class="movie-row" id="classicRow"></div>
+        </section>
+
+        <!-- Comedy -->
+        <section class="movie-section">
+            <h3 class="section-title">Comedy</h3>
+            <div class="movie-row" id="comedyRow"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h5 class="footer-brand">BLACKBUSTER</h5>
+                    <p class="footer-description">Celebrating Black cinema and storytelling.</p>
+                </div>
+                <div class="footer-column">
+                    <h6 class="footer-heading">Browse</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Movies</a></li>
+                        <li><a href="#">TV Shows</a></li>
+                        <li><a href="#">Documentaries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h6 class="footer-heading">Account</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">My List</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h6 class="footer-heading">Connect</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Blackbuster. Celebrating the excellence of Black cinema.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Movie Modal -->
+    <div class="modal-overlay" id="movieModal" onclick="closeMovieModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeMovieModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="18" x2="6" y1="6" y2="18"></line>
+                    <line x1="6" x2="18" y1="6" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-hero">
+                <img id="modalImage" src="" alt="" class="modal-image">
+                <div class="modal-overlay-gradient"></div>
+                <div class="modal-play-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-info">
+                <div class="modal-meta">
+                    <span id="modalBadges"></span>
+                    <h2 id="modalTitle"></h2>
+                    <div class="modal-details">
+                        <span id="modalRating"></span>
+                        <span id="modalYear"></span>
+                        <span id="modalDuration"></span>
+                        <div class="rating">
+                            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                            </svg>
+                            <span id="modalImdbRating"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21"></polygon>
+                        </svg>
+                        Play
+                    </button>
+                    <button class="btn btn-secondary">
+                        <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="12" x2="12" y1="5" y2="19"></line>
+                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                        </svg>
+                        My List
+                    </button>
+                </div>
+                <div class="modal-tabs">
+                    <div class="tab-nav">
+                        <button class="tab-btn active" onclick="switchTab(event, 'overview')">Overview</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'cast')">Cast & Crew</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'details')">Details</button>
+                    </div>
+                    <div id="overview" class="tab-content active">
+                        <div class="overview-content">
+                            <h4>Synopsis</h4>
+                            <p id="modalDescription"></p>
+                            <div class="overview-grid">
+                                <div>
+                                    <h5>Director</h5>
+                                    <p id="modalDirector"></p>
+                                </div>
+                                <div>
+                                    <h5>Genres</h5>
+                                    <div id="modalGenres" class="genre-tags"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cast" class="tab-content">
+                        <div class="cast-content">
+                            <h4>Main Cast</h4>
+                            <div id="modalCast" class="cast-grid"></div>
+                        </div>
+                    </div>
+                    <div id="details" class="tab-content">
+                        <div class="details-content">
+                            <div class="details-grid">
+                                <div>
+                                    <h5>Release Year</h5>
+                                    <p id="detailsYear"></p>
+                                </div>
+                                <div>
+                                    <h5>Duration</h5>
+                                    <p id="detailsDuration"></p>
+                                </div>
+                                <div>
+                                    <h5>Rating</h5>
+                                    <p id="detailsRating"></p>
+                                </div>
+                                <div>
+                                    <h5>IMDb Rating</h5>
+                                    <p id="detailsImdbRating"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="continueWatchingProgress" class="continue-watching" style="display: none;">
+                    <div class="progress-info">
+                        <span>Continue watching</span>
+                        <span id="progressPercent"></span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal-overlay" id="searchModal" onclick="closeSearchModal(event)">
+        <div class="search-modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeSearchModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="18" x2="6" y1="6" y2="18"></line>
+                    <line x1="6" x2="18" y1="6" y2="18"></line>
+                </svg>
+            </button>
+            <div class="search-header">
+                <div class="search-input-container">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" placeholder="Search for movies, TV shows, actors, directors..." id="searchModalInput" class="search-modal-input">
+                </div>
+                <div class="search-filters">
+                    <button class="filter-toggle" onclick="toggleFilters()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"></polygon>
+                        </svg>
+                        Filters
+                    </button>
+                </div>
+            </div>
+            <div id="searchFilters" class="search-filters-panel" style="display: none;">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Genre</label>
+                        <select id="genreFilter">
+                            <option value="">All Genres</option>
+                            <option value="Action">Action</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Documentary">Documentary</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Year</label>
+                        <select id="yearFilter">
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Rating</label>
+                        <select id="ratingFilter">
+                            <option value="">Any Rating</option>
+                            <option value="8">8.0+</option>
+                            <option value="7">7.0+</option>
+                            <option value="6">6.0+</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="search-results" id="searchResults">
+                <div class="search-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <p>Start typing to search for movies and TV shows...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
